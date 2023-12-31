@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getFireStore} from 'firebase/firestore'
+import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -10,6 +10,7 @@ import { getFireStore} from 'firebase/firestore'
 const firebaseConfig = {
   apiKey: "AIzaSyDrCwTR2Qg98Lbr1qejfll2k01vCP77Lm4",
   authDomain: "react-app-ifaz.firebaseapp.com",
+  databaseURL: "https://react-app-ifaz-default-rtdb.firebaseio.com",
   projectId: "react-app-ifaz",
   storageBucket: "react-app-ifaz.appspot.com",
   messagingSenderId: "709318665389",
@@ -20,6 +21,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(app);
-export const db = getFireStore(app);
+export const db = getFirestore(app);
 
 export default app;
