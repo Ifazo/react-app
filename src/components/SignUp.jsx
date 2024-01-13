@@ -34,7 +34,7 @@ export default class SignUp extends Component {
   
   render() {
     return (
-      <section className="flex flex-wrap items-center justify-center h-screen font-poppins">
+      <section className="flex flex-wrap items-center justify-center font-poppins">
         <div className="max-w-6xl mx-auto ">
           <div className=" lg:py-7">
             <div className="max-w-xl lg:p-12 shadow-md rounded-md p-6 mx-auto text-center bg-[#dbeafe6e] dark:bg-gray-800 ">

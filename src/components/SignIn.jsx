@@ -1,4 +1,6 @@
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { Component } from 'react'
+import { auth } from '../firebase';
 
 export default class SignIn extends Component {
   constructor(props) {
@@ -17,9 +19,36 @@ export default class SignIn extends Component {
     e.preventDefault();
     console.log(this.state);
   }
+
+  handleGoogle = () => {
+    console.log('google');
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const user = result.user;
+        console.log(user, token);
+      }).catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.email;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        console.log(errorCode, errorMessage, email, credential);
+      });
+  }
+
+  handleFacebook = () => {
+    console.log('facebook');
+  }
+
+  handleGithub = () => {
+    console.log('github');
+  }
+
   render() {
     return (
-      <section className="flex flex-wrap items-center justify-center h-screen font-poppins">
+      <section className="flex flex-wrap items-center justify-center font-poppins">
         <div className="max-w-6xl mx-auto ">
           <div className=" lg:py-7">
             <div className="max-w-xl lg:p-12 shadow-md rounded-md p-6 mx-auto text-center bg-[#dbeafe6e] dark:bg-gray-800 ">
@@ -88,8 +117,9 @@ export default class SignIn extends Component {
                 </div>
                 <div className="flex flex-wrap ">
                   <div className="w-full py-2 lg:px-2 lg:py-0 lg:w-1/3">
-                    <a
-                      href="#"
+                    <button
+                      type='button'
+                      onClick={this.handleFacebook}
                       className="flex items-center justify-center p-3 bg-blue-800 rounded-md hover:bg-blue-600 dark:hover:bg-gray-800">
                       <span className="inline-block mr-2 text-gray-300 dark:text-gray-400">
                         <svg
@@ -105,11 +135,12 @@ export default class SignIn extends Component {
                       <span className="text-xs font-medium text-gray-200 uppercase lg:text-sm dark:text-gray-300">
                         Facebook
                       </span>
-                    </a>
+                    </button>
                   </div>
                   <div className="w-full py-2 lg:px-2 lg:py-0 lg:w-1/3">
-                    <a
-                      href="#"
+                    <button
+                      type='button'
+                      onClick={this.handleGoogle}
                       className="flex items-center justify-center p-3 bg-red-700 rounded-md dark:bg-red-700 hover:bg-red-500 dark:hover:bg-gray-800">
                       <span className="inline-block mr-2 text-gray-300 dark:text-gray-400">
                         <svg
@@ -125,11 +156,12 @@ export default class SignIn extends Component {
                       <span className="text-xs font-medium text-gray-200 uppercase lg:text-sm dark:text-gray-300">
                         Google
                       </span>
-                    </a>
+                    </button>
                   </div>
                   <div className="w-full py-2 lg:px-2 lg:py-0 lg:w-1/3">
-                    <a
-                      href="#"
+                    <button
+                      type='button'
+                      onClick={this.handleGithub}
                       className="flex items-center justify-center p-3 bg-gray-800 rounded-md dark:bg-gray-500 hover:bg-gray-700 dark:hover:bg-gray-600">
                       <span className="inline-block mr-2 text-gray-300 dark:text-gray-400">
                         <svg
@@ -144,9 +176,9 @@ export default class SignIn extends Component {
                         </svg>
                       </span>
                       <span className="text-xs font-medium text-gray-200 uppercase lg:text-sm dark:text-gray-300 ">
-                        Apple
+                        Github
                       </span>
-                    </a>
+                    </button>
                   </div>
                 </div>
                 <p className="px-2 mt-6 text-sm text-left text-gray-700 dark:text-gray-400">
