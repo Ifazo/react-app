@@ -1,26 +1,36 @@
-import { Component } from "react";
-import { Link } from "react-router-dom";
+export default function ErrorPage() {
+  return (
+    <>
+      {/*
+        This example requires updating your template:
 
-export default class ErrorPage extends Component {
-  render() {
-    return (
-      <div className="grid h-screen place-content-center bg-white px-4">
+        ```
+        <html class="h-full">
+        <body class="h-full">
+        ```
+      */}
+      <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
         <div className="text-center">
-          <h1 className="text-9xl font-black text-gray-200">404</h1>
-
-          <p className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Uh-oh!
+          <p className="text-base font-semibold text-indigo-600">404</p>
+          <h1 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+            Page not found
+          </h1>
+          <p className="mt-6 text-base leading-7 text-gray-600">
+            Sorry, we could not find the page you are looking for.
           </p>
-
-          <p className="mt-4 text-gray-500">We can not find that page.</p>
-
-          <Link
-            href="/"
-            className="mt-6 inline-block rounded bg-indigo-600 px-5 py-3 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring">
-            Go Back Home
-          </Link>
+          <div className="mt-10 flex items-center justify-center gap-x-6">
+            <a
+              href="/"
+              className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Go back home
+            </a>
+            <a href="/contact" className="text-sm font-semibold text-gray-900">
+              Contact support <span aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
         </div>
-      </div>
-    );
-  }
+      </main>
+    </>
+  );
 }
