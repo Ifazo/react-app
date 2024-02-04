@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import RootLayout from "../layouts/RootLayout.jsx";
-import SignIn from "../components/SignIn.jsx";
-import SignUp from "../components/SignUp.jsx";
+import SignInPage from "../pages/SignInPage.jsx";
+import SignUpPage from "../pages/SignUpPage.jsx";
 import HomePage from "../pages/HomePage.jsx";
 import ErrorPage from "../pages/ErrorPage.jsx";
 import ProductsPage from "../pages/ProductsPage.jsx";
@@ -36,11 +36,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/sign-in",
-        element: <SignIn />,
+        element: <SignInPage />,
       },
       {
         path: "/sign-up",
-        element: <SignUp />,
+        element: <SignUpPage />,
       },
     ],
   },
