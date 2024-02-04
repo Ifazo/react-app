@@ -4,45 +4,20 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import PropTypes from "prop-types";
 import { CartContext } from "../contexts/CartContext";
 
-// const products = [
-//   {
-//     id: 1,
-//     name: "Throwback Hip Bag",
-//     href: "#",
-//     color: "Salmon",
-//     price: "$90.00",
-//     quantity: 1,
-//     imageSrc:
-//       "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg",
-//     imageAlt:
-//       "Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.",
-//   },
-//   {
-//     id: 2,
-//     name: "Medium Stuff Satchel",
-//     href: "#",
-//     color: "Blue",
-//     price: "$32.00",
-//     quantity: 1,
-//     imageSrc:
-//       "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg",
-//     imageAlt:
-//       "Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.",
-//   },
-//   // More products...
-// ];
-
 Cart.propTypes = {
-  open: PropTypes.any, // Replace 'any' with the actual prop type expected
+  open: PropTypes.boolean,
   setOpen: PropTypes.func.isRequired,
 };
 
 export default function Cart({ open, setOpen }) {
-  const { cart, total, removeFromCart } =
-    useContext(CartContext);
+  const { cart, total, removeFromCart, clearCart } = useContext(CartContext);
 
   const handleRemoveFromCart = (product) => {
     removeFromCart(product);
+  };
+
+  const handleClearCart = () => {
+    clearCart();
   };
 
   if (cart.length === 0) {
@@ -88,7 +63,10 @@ export default function Cart({ open, setOpen }) {
                             >
                               <span className="absolute -inset-0.5" />
                               <span className="sr-only">Close panel</span>
-                              <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                              <XMarkIcon
+                                className="h-6 w-6"
+                                aria-hidden="true"
+                              />
                             </button>
                           </div>
                         </div>
@@ -228,12 +206,13 @@ export default function Cart({ open, setOpen }) {
                         Shipping and taxes calculated at checkout.
                       </p>
                       <div className="mt-6">
-                        <a
-                          href="#"
+                        <button
+                          type="button"
+                          onClick={() => handleClearCart()}
                           className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                         >
                           Checkout
-                        </a>
+                        </button>
                       </div>
                       <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <p>

@@ -9,6 +9,7 @@ import {
 import { AuthContext } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import Cart from "./Cart";
+import logo from "../assets/logo.jpg";
 
 const navigation = [
   { name: "Home", href: "/", current: true },
@@ -24,7 +25,7 @@ function classNames(...classes) {
 export default function Header() {
   const [openCart, setOpenCart] = useState(false);
   const { user, logout } = useContext(AuthContext);
-  // console.log(user);
+  console.log(user);
   const handleLogout = () => {
     logout();
   };
@@ -49,11 +50,7 @@ export default function Header() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
-                  />
+                  <img className="h-8 w-auto" src={logo} alt="Your Company" />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
@@ -95,10 +92,18 @@ export default function Header() {
                       <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
-                        <UserIcon
-                          className="h-6 w-6 text-white"
-                          aria-hidden="true"
-                        />
+                        {user.photoURL ? (
+                          <img
+                            className="h-8 w-8 rounded-full"
+                            src={user.photoURL}
+                            alt=""
+                          />
+                        ) : (
+                          <UserIcon
+                            className="h-6 w-6 text-white"
+                            aria-hidden="true"
+                          />
+                        )}
                       </Menu.Button>
                     </div>
                     <Transition
