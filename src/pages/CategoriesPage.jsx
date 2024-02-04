@@ -1,9 +1,7 @@
-import { Component } from 'react'
-
-export default class CategoriesPage extends Component {
-  render() {
-    return (
-      <div>CategoriesPage</div>
-    )
-  }
+export default function CategoriesPage() {
+  return (
+    <div>
+      <h1>Categories coming soon</h1>
+    </div>
+  );
 }

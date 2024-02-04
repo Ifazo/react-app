@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllProducts } from "../lib/api";
+import Loader from "../components/Loader";
+import { Link } from "react-router-dom";
 
 export default function ProductsPage() {
   const [products, setProducts] = useState([]);
@@ -19,7 +21,7 @@ export default function ProductsPage() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   } else if (error) {
     return <div>Something went wrong!</div>;
   } else if (!products) {
@@ -47,10 +49,10 @@ export default function ProductsPage() {
                 <div className="mt-4 flex justify-between">
                   <div>
                     <h3 className="text-sm text-gray-700">
-                      <a href={`/products/${product.id}`}>
+                      <Link to={`/products/${product.id}`}>
                         <span aria-hidden="true" className="absolute inset-0" />
                         {product.title}
-                      </a>
+                      </Link>
                     </h3>
                     <p className="mt-1 text-sm text-gray-500">
                       {product.brand}

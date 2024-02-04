@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { getProductById } from "../lib/api";
 import { StarIcon } from "@heroicons/react/20/solid";
+import { CartContext } from "../contexts/CartContext";
+import Loader from "../components/Loader";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -9,9 +11,16 @@ function classNames(...classes) {
 
 export default function ProductPage() {
   const { id } = useParams();
+
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+
+  const { addToCart } = useContext(CartContext);
+  
+  const handleAddToCart = (product) => {
+    addToCart(product);
+  };
 
   useEffect(() => {
     getProductById(id)
@@ -26,12 +35,10 @@ export default function ProductPage() {
   }, [id]);
 
   if (loading) {
-    return <div>Loading...</div>;
-  }
-  else if (error) {
+    return <Loader />;
+  } else if (error) {
     return <div>Something went wrong!</div>;
-  }
-  else if (!product) {
+  } else if (!product) {
     return <div>Product not found!</div>;
   }
 
@@ -45,9 +52,9 @@ export default function ProductPage() {
           >
             <li>
               <div className="flex items-center">
-                <a href="/" className="mr-2 text-sm font-medium text-gray-900">
+                <Link href="/" className="mr-2 text-sm font-medium text-gray-900">
                   Home
-                </a>
+                </Link>
                 <svg
                   width={16}
                   height={20}
@@ -175,7 +182,9 @@ export default function ProductPage() {
               {/* Sizes */}
               <div className="mt-10">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-sm font-medium text-gray-900">Brand: { product.brand}</h3>
+                  <h3 className="text-sm font-medium text-gray-900">
+                    Brand: {product.brand}
+                  </h3>
                   <a
                     href={product.id}
                     className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
@@ -186,10 +195,11 @@ export default function ProductPage() {
               </div>
 
               <button
-                type="submit"
+                type="button"
+                onClick={() => handleAddToCart(product)}
                 className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
-                Add to bag
+                Add to cart
               </button>
             </form>
           </div>

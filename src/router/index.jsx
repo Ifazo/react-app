@@ -8,6 +8,7 @@ import ProductsPage from "../pages/ProductsPage.jsx";
 import CategoriesPage from "../pages/CategoriesPage.jsx";
 import ProductPage from "../pages/ProductPage.jsx";
 import CategoryPage from "../pages/CategoryPage.jsx";
+import DashboardPage from "../pages/DashboardPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/categories/:id",
         element: <CategoryPage />,
+      },
+      {
+        path: "/dashboard",
+        element: <DashboardPage />,
       },
       {
         path: "/sign-in",

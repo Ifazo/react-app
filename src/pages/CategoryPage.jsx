@@ -1,9 +1,7 @@
-import { Component } from 'react'
 
-export default class CategoryPage extends Component {
-  render() {
-    return (
-      <div>CategoryPage</div>
-    )
-  }
+
+export default function CategoryPage() {
+  return (
+    <div>CategoryPage</div>
+  )
 }

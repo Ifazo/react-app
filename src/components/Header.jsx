@@ -1,4 +1,4 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
@@ -8,12 +8,13 @@ import {
 } from "@heroicons/react/24/outline";
 import { AuthContext } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
+import Cart from "./Cart";
 
 const navigation = [
   { name: "Home", href: "/", current: true },
   { name: "Product", href: "/products", current: false },
   { name: "Category", href: "/categories", current: false },
-  { name: "Dashboard", href: "/dashboard", current: false },
+  { name: "Blog", href: "/blogs", current: false },
 ];
 
 function classNames(...classes) {
@@ -21,8 +22,9 @@ function classNames(...classes) {
 }
 
 export default function Header() {
+  const [openCart, setOpenCart] = useState(false);
   const { user, logout } = useContext(AuthContext);
-  
+  // console.log(user);
   const handleLogout = () => {
     logout();
   };
@@ -78,12 +80,14 @@ export default function Header() {
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                   <button
                     type="button"
+                    onClick={() => setOpenCart(!openCart)}
                     className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                   >
                     <span className="absolute -inset-1.5" />
-                    <span className="sr-only">View notifications</span>
+                    <span className="sr-only">View cart</span>
                     <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
+                  <Cart open={openCart} setOpen={setOpenCart} />
 
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3">
