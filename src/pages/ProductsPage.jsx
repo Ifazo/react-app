@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { getAllProducts } from "../lib/api";
 import Loader from "../components/Loader";
 import { Link } from "react-router-dom";
+import { getProducts } from "../lib/firebase";
 
 export default function ProductsPage() {
   const [products, setProducts] = useState([]);
@@ -9,9 +9,9 @@ export default function ProductsPage() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    getAllProducts()
+    getProducts()
       .then((res) => {
-        setProducts(res.data.products);
+        setProducts(res);
         setLoading(false);
       })
       .catch(() => {

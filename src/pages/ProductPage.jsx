@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getProductById } from "../lib/api";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { CartContext } from "../contexts/CartContext";
 import Loader from "../components/Loader";
+import { getProduct } from "../lib/firebase";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -23,9 +23,9 @@ export default function ProductPage() {
   };
 
   useEffect(() => {
-    getProductById(id)
+    getProduct(id)
       .then((res) => {
-        setProduct(res.data);
+        setProduct(res);
         setLoading(false);
       })
       .catch(() => {
