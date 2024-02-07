@@ -11,9 +11,10 @@ import {
   onAuthStateChanged
 } from "firebase/auth";
 import { createContext, useState, useEffect } from "react";
-import { auth } from "../firebase";
+
 import PropTypes from "prop-types";
 import toast from "react-hot-toast";
+import { auth } from "../lib/firebase";
 
 export const AuthContext = createContext(null);
 

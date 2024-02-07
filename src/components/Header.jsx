@@ -9,7 +9,7 @@ import {
 import { AuthContext } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import Cart from "./Cart";
-import logo from "../assets/logo.jpg";
+import logo from "../assets/react.svg";
 
 const navigation = [
   { name: "Home", href: "/", current: true },

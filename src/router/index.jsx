@@ -5,10 +5,12 @@ import SignUpPage from "../pages/SignUpPage.jsx";
 import HomePage from "../pages/HomePage.jsx";
 import ErrorPage from "../pages/ErrorPage.jsx";
 import ProductsPage from "../pages/ProductsPage.jsx";
-import CategoriesPage from "../pages/CategoriesPage.jsx";
 import ProductPage from "../pages/ProductPage.jsx";
+import CategoriesPage from "../pages/CategoriesPage.jsx";
 import CategoryPage from "../pages/CategoryPage.jsx";
 import DashboardPage from "../pages/DashboardPage.jsx";
+import CategoryLayout from "../layouts/CategoryLayout.jsx";
+import DashboardLayout from "../layouts/DashboardLayout.jsx";
 
 const router = createBrowserRouter([
   {
@@ -29,15 +31,17 @@ const router = createBrowserRouter([
       },
       {
         path: "/categories",
-        element: <CategoriesPage />,
+        element: <CategoryLayout />,
+        children: [
+          {
+            path: "/categories",
+            element: <CategoriesPage />,
+          },
+        ],
       },
       {
         path: "/categories/:id",
         element: <CategoryPage />,
-      },
-      {
-        path: "/dashboard",
-        element: <DashboardPage />,
       },
       {
         path: "/sign-in",
@@ -46,6 +50,16 @@ const router = createBrowserRouter([
       {
         path: "/sign-up",
         element: <SignUpPage />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "/dashboard",
+        element: <DashboardPage />,
       },
     ],
   },

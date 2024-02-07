@@ -8,5 +8,5 @@ export default {
       },
     },
   },
-  plugins: ["@tailwindcss/aspect-ratio", "@tailwindcss/aspect-ratio"],
+  plugins: ["@tailwindcss/forms", "@tailwindcss/aspect-ratio"],
 };
